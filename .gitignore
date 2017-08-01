@@ -21,3 +21,5 @@ node_modules/
 /rel
 
 # End of https://www.gitignore.io/api/elixir,phoenix
+
+.ds_store
