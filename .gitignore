@@ -7,6 +7,8 @@
 erl_crash.dump
 *.ez
 *.beam
+.iex.exs
+logfile
 
 ### Elixir Patch ###
 /doc
