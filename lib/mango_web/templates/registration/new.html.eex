@@ -27,7 +27,7 @@
 
   <div class="form-group">
     <%= label f, :residence_area, "Area of Residence", class: "control-label" %>
-    <%= select f, :residence_area, ["Area 1", "Area 2", "Area 3"], prompt: "Choose your residence area", class: "form-control" %>
+    <%= select f, :residence_area, @residence_areas, prompt: "Choose your residence area", class: "form-control" %>
     <%= error_tag f, :residence_area %>
   </div>
 
