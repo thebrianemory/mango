@@ -28,7 +28,7 @@ defmodule MangoWeb.Acceptance.SessionTest do
     |> fill_field("john@example.com")
 
     find_within_element(form, :name, "session[password]")
-    |> fill_field("secret")
+    |> fill_field("password")
 
     find_within_element(form, :tag, "button")
     |> click()
