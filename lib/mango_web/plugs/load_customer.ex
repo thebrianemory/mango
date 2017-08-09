@@ -2,7 +2,7 @@ defmodule MangoWeb.Plugs.LoadCustomer do
   import Plug.Conn
   alias Mango.CRM
 
-  def init(opts), do: nil
+  def init(_opts), do: nil
 
   def call(%Plug.Conn{} = conn, _opts) do
     customer_id = get_session(conn, :customer_id)
