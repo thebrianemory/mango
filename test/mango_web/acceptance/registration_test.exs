@@ -33,7 +33,7 @@ defmodule MangoWeb.Acceptance.RegistrationTest do
   end
 
   test "shows error messages on invalid data" do
-    navigate_to("register")
+    navigate_to("/register")
 
     find_element(:id, "registration-form")
     |> find_within_element(:tag, "button")
