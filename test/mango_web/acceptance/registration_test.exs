@@ -40,7 +40,7 @@ defmodule MangoWeb.Acceptance.RegistrationTest do
     |> click()
 
     assert current_path() == "/register"
-    message = find_element(:id, "form-error") |> visibile_text()
+    message = find_element(:id, "form-error") |> visible_text()
     assert message == "Oops, something went wrong! Please check the erros below"
   end
 end
