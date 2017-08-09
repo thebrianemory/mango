@@ -23,7 +23,7 @@ defmodule Mango.CRMTest do
     }
 
     assert {:ok, customer} = CRM.create_customer(valid_attrs)
-    assert Comeonein.Bcrypt.checkpw(valid_attrs["password"], customer.password_hash)
+    assert Comeonin.Bcrypt.checkpw(valid_attrs["password"], customer.password_hash)
   end
 
   test "create_customer/1 returns a changeset for invalid data" do
