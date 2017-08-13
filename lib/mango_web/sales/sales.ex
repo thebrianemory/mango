@@ -23,7 +23,7 @@ defmodule Mango.Sales do
     }
     existing_line_items = existing_line_items |> Enum.map(&Map.from_struct/1)
 
-    attrs = %{line_items: [new_items | existing_line_items]}
+    attrs = %{line_items: [new_item | existing_line_items]}
     update_cart(cart, attrs)
   end
 
