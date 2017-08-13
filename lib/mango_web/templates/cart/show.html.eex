@@ -13,13 +13,17 @@
       </tr>
     </thead>
     <tbody>
-      <%= for item <- @cart.line_items do %>
+      <%= inputs_for f, :line_items, fn lf -> %>
       <tr>
-        <td><%= item.product_name %></td>
-        <td><%= item.pack_size %></td>
-        <td><%= item.quantity %></td>
-        <td>₹ <%= item.unit_price %></td>
-        <td>₹ <%= item.total %></td>
+        <td><%= lf.data.product_name %></td>
+        <td><%= lf.data.pack_size %></td>
+        <td>
+          <%= hidden_input lf, :product_id %>
+          <%= number_input lf, :quantity %>
+        </td>
+        <td>₹ <%= lf.data.unit_price %></td>
+        <td>₹ <%= lf.data.total %></td>
+        <td><%= checkbox lf, :delete %></td>
       </tr>
     <% end %>
     <tr>
