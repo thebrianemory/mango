@@ -12,7 +12,7 @@ defmodule MangoWeb.Plugs.FetchCart do
     do
       conn |> assign(:cart, cart)
     else
-      _ -> cart = Sales.create_Cart()
+      _ -> cart = Sales.create_cart()
         conn
         |> put_session(:cart_id, cart.id)
         |> assign(:cart, cart)
