@@ -17,7 +17,7 @@
         <li><%= link "Vegetables", to: category_path(@conn, :show, "vegetables") %></li>
       </ul>
     <ul class="nav navbar-nav navbar-right" %>
-      <li><%= link "Cart", to: cart_path(@conn, :show), class: "cart nav-link" %></li>
+      <li><%= link "Cart (#{cart_count(@conn)})", to: cart_path(@conn, :show), class: "cart nav-link" %></li>
     <%= if @customer do %>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
