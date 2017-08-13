@@ -29,7 +29,7 @@ defmodule MangoWeb.Acceptance.CartTest do
   test "add to cart" do
     navigate_to("/")
 
-    [product | _rest] = find_all_elements(:css, ".product-thumbnail")
+    [product | _rest] = find_all_elements(:css, ".product")
 
     product_name = find_within_element(product, :name, "cart[product_name]")
                    |> attribute_value("value")
@@ -42,10 +42,10 @@ defmodule MangoWeb.Acceptance.CartTest do
     find_within_element(product, :tag, "button")
     |> click()
 
-    message = find_element(:css, ".alert")
+    message = find_element(:css, ".alert-success")
               |> visible_text()
 
-    assert message == "Product added to cart - #{product_name}(#{pack_size}) x 2 qty"
+    assert message == "×\nClose\nProduct added to cart - #{product_name}(#{pack_size}) x 2 qty"
   end
 end
 
