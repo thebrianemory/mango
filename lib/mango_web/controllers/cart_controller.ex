@@ -3,7 +3,7 @@ defmodule MangoWeb.CartController do
   alias Mango.Sales
 
   def add(conn, %{"cart" => cart_params}) do
-    cart = "?"
+    cart = conn.assigns.cart
     case Sales.add_to_cart(cart, cart_params) do
       {:ok, _} ->
         %{"product_name" => name, "pack_size" => size, "quantity" => qty} = cart_params
