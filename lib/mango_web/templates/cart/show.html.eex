@@ -11,6 +11,7 @@
         <th>Quantity</th>
         <th>Unit Price</th>
         <th>Subtotal</th>
+        <th>Remove?</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
     <tr>
       <td colspan=4>Total</td>
       <td>₹ <%= @cart.total %></td>
+      <td></td>
     </tr>
     </tbody>
   </table>
