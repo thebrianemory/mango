@@ -14,6 +14,13 @@ defmodule Mango.CRMTest do
   end
 
   test "create_customer/1 returns a customer for valid data" do
+    valid_attrs = %{
+      "name" => "John",
+      "email" => "john@example.com",
+      "password" => "secret",
+      "residence_area" => "Area 1",
+      "phone" => "1111"
+    }
 
     assert {:ok, customer} = CRM.create_customer(valid_attrs)
     assert Comeonin.Bcrypt.checkpw(valid_attrs["password"], customer.password_hash)
@@ -34,7 +41,7 @@ defmodule Mango.CRMTest do
       "phone" => "1111"
     }
 
-    customer1 = CRM.create_customer(valid_attrs)
+    {:ok, customer1} = CRM.create_customer(valid_attrs)
     customer2 = CRM.get_customer_by_email("john@example.com")
 
     assert customer1.id == customer2.id
