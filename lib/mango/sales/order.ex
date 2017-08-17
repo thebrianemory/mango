@@ -5,9 +5,14 @@ defmodule Mango.Sales.Order do
 
 
   schema "orders" do
+    embeds_many :line_items, LineItem, on_replace: :delete
     field :status, :string
     field :total, :decimal
-    embeds_many :line_items, LineItem, on_replace: :delete
+    field :comments, :string
+    field :customer_id, :integer
+    field :customer_name, :string
+    field :email, :string
+    field :residence_area, :string
 
     timestamps()
   end
@@ -18,7 +23,13 @@ defmodule Mango.Sales.Order do
     |> cast(attrs, [:status, :total])
     |> cast_embed(:line_items, required: true, with: &LineItem.changeset/2)
     |> set_order_total
-    |> validate_required([:status, :total])
+    |> validate_required([:line_items, :status, :total])
+  end
+
+  def checkout_changeset(%Order{} = order, attrs) do
+    changeset(order, attrs)
+    |> cast(attrs, [:customer_id, :customer_name, :residence_area, :email, :comments])
+    |> validate_required([:customer_id, :customer_name, :residence_area, :email])
   end
 
   defp set_order_total(changeset) do
