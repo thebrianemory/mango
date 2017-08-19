@@ -19,6 +19,10 @@ defmodule MangoWeb.Router do
     plug MangoWeb.Plugs.Locale
   end
 
+  pipeline :admin do
+    plug MangoWeb.Plugs.AdminLayout
+  end
+
   scope "/", MangoWeb do
     pipe_through [:browser, :frontend]
     get "/register", RegistrationController, :new
@@ -42,5 +46,14 @@ defmodule MangoWeb.Router do
     get "/checkout", CheckoutController, :edit
     put "/checkout/confirm", CheckoutController, :update
     resources "/tickets", TicketController, except: [:edit, :update, :delete]
+  end
+
+  scope "/admin", MangoWeb.Admin, as: :admin do
+    pipe_through [:browser, :admin]
+
+    resources "/users", UserController
+    get "/login", SessionController, :new
+    post "/sendlink", SessionController, :send_link
+    get "/magiclink", SessionController, :create
   end
 end
