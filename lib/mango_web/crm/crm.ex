@@ -2,7 +2,11 @@ defmodule Mango.CRM do
   alias Mango.Repo
   alias Mango.CRM.Customer
 
-  def get_customer(id), do: Repo.get(Customer, id)
+  def get_customer!(id), do: Repo.get!(Customer, id)
+
+  def list_customers do
+    Repo.all(Customer)
+  end
 
   def build_customer(attrs \\ %{}) do
     %Customer{}

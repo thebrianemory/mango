@@ -25,6 +25,12 @@ defmodule MangoWeb.Admin.SessionController do
     end
   end
 
+  def delete(conn, _) do
+    clear_session(conn)
+    |> put_flash(:info, "You have been logged out")
+    |> redirect(to: admin_user_path(conn, :index))
+  end
+
   def send_link(conn, %{"session" => %{"email" => email}}) do
     user = Administration.get_admin_by_email(email)
     conn = case user do

@@ -21,6 +21,7 @@ defmodule MangoWeb.Router do
 
   pipeline :admin do
     plug MangoWeb.Plugs.AdminLayout
+    plug MangoWeb.Plugs.LoadAdmin
   end
 
   scope "/", MangoWeb do
@@ -51,9 +52,17 @@ defmodule MangoWeb.Router do
   scope "/admin", MangoWeb.Admin, as: :admin do
     pipe_through [:browser, :admin]
 
-    resources "/users", UserController
     get "/login", SessionController, :new
     post "/sendlink", SessionController, :send_link
     get "/magiclink", SessionController, :create
+  end
+
+  scope "/admin", MangoWeb.Admin, as: :admin do
+    pipe_through [:browser, :admin, MangoWeb.Plugs.AuthenticateAdmin]
+
+    resources "/users", UserController
+    resources "/orders", OrderController, only: [:index, :show]
+    resources "/customers", CustomerController, only: [:index, :show]
+    get "/logout", SessionController, :delete
   end
 end
