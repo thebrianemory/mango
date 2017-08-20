@@ -55,6 +55,7 @@ defmodule MangoWeb.Router do
     get "/login", SessionController, :new
     post "/sendlink", SessionController, :send_link
     get "/magiclink", SessionController, :create
+    get "/", DashboardController, :show
   end
 
   scope "/admin", MangoWeb.Admin, as: :admin do
