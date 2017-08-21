@@ -51,5 +51,11 @@ defmodule Mango.Sales do
     |> Repo.all
   end
 
-  def get_order!(id), do: Repo.get!(Order, id)
+  def get_order(id), do: Repo.get(Order, id)
+
+  def pos_sale_complete(%Order{} = order) do
+    order
+    |> Order.changeset(%{"status" => "POS Sale"})
+    |> Repo.update()
+  end
 end
